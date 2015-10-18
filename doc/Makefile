@@ -1,5 +1,5 @@
 all:
-	pdflatex *.tex
+	pdflatex kinematics.tex
 
 
 clean:

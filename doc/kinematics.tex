@@ -1,24 +1,61 @@
 \documentclass[a4paper]{report}
 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
 \begin{document}
 
 \section{Kinematics}
-Kinematics is the science that studies the geometry of motion. It is restricted to a purely geometrical description of motion by means of position, orientation and their time derivatives. 
+Kinematics is the science that studies the geometry of motion. It is restricted to a purely geometrical description of motion by means of position, orientation and their time derivatives.
 
-In general robots of any kind can be modeled as a set of articulated rigid bodies
+Kinematic models are also fundamental to study the dynamics of the robots and also to design controllers.
 
-Kinematics helps to answer the following two questions:
-Given a set of values for the different joint parameters where would the end effector (hand, foot, etc.) be located? This is know as forward kinematics.
-If we wanted to position the end effector in a particular position for instance we wanted to reach the door's knob or we wanted to place our foot in the right spot not fall, How should the joint parameters be adjusted? This is known as inverse kinematics.
+In robotics, kinematics helps to answer two questions:
+\begin{itemize}
+    \item{} Given a set of values for the different joint parameters (elbows, knees, etc.) where would the end effector (hand, foot, etc.) be located? This is know as forward kinematics.
+    \item{} To position the effector in a particular place for instance to reach the door's knob or to place the foot in the right spot not fall, how should the joint parameters be adjusted? This is known as inverse kinematics.
+\end{itemize}
 
-For the present work the second problem is more interesting, but it is also more complicated as multiple solutions may exist for the same problem <reference>. However this is something we solve every day, we never stop to think if we should bent our knee 2.5° or 1.6°.
+The second problem is more interesting but it is also more complicated as multiple solutions may exist for the same problem <reference>.
 
 \section{Absolute and relative coordinate systems}
-The first thing we need to define is the coordinate system to represent where the robot is positioned in the world, this coordinate system will also server to represent where every object in the world is located. This is known as the world coordinate system $\Sigma_W$, its origin can be fixed anywhere in the world.
+The study of kinematics begins by defining a global coordinate system, such coordinate system will serve to describe the position of the robot and its parts, as well as the position of all the other objects of interest in world. This is known as the world coordinate system $\Sigma_W$, its origin can be fixed anywhere in the world. When the position of an object is given in the world coordinates it is common to refer to this position as the absolute position, mathematically coordinates are represented by three dimensional vectors:
+\begin{equation}
+    \vec{p} = \begin{bmatrix}
+        p_x\\
+        p_y\\
+        p_x\\
+    \end{bmatrix}
+\end{equation}
 
-Where things are located with respect to the robot. 
+From time to time it is also convenient to have additional coordinate systems to describe where things are located with respect to other objects in the world, for example for a humanoid robot it may be useful to know where the door's know is located with respect to its hand or where the end of its arm is located with respect to its elbow. In both examples the coordinate systems are attached to a particular object (the hand, the elbow) and they move with that particular object, these kind of coordinate systems are known as local coordinate systems.
 
-\section{}
+\section{Homogeneous Transformations}
+The use of multiple coordinate systems introduces a new problem, the same point can be represented in multiple coordinate systems, a mechanism to transform the coordinates of an object between coordinate systems is required. As shown by <reference> such transformation can be performed with a homogeneous transformation matrix, given a point $h$ with coordinates $^{b}\vec{p}_{h}$ in a local coordinate system $\Sigma_b$ which has its $x_b$, $y_b$ and $z_b$ axis rotated $\phi$, $\theta$ and $\psi$ degrees with respect to the $x_a$, $y_a$ and $z_a$ axis of another local coordinate system $\Sigma_{a}$, the coordinates $^{a}\vec{p}_{h}$ of the point $h$ in $\Sigma_b$ is given by:
+
+\begin{equation}
+    \begin{bmatrix} ^{a}\vec{p}_{h} \\ 1 \end{bmatrix} = \,
+        ^{a}\boldsymbol{T}_{b}
+        \begin{bmatrix}
+            ^{b}\vec{p}_{h} \\ 1
+        \end{bmatrix} =
+        \begin{bmatrix}
+            ^{a}\boldsymbol{R}_{b} & ^{a}\vec{p}_{b} \\
+            0 & 0 & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            ^{b}\vec{p}_{h} \\
+            1
+        \end{bmatrix}
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item{} $^{a}\boldsymbol{T}_{b}$ is a $4x4$ known as the homogeneous transformation matrix.
+    \item{} $^{a}\boldsymbol{R}_{b}$ the rotation matrix, more on this below.
+    \item{} $^{a}\vec{p}_{b}$ is the origin of $\Sigma_{b}$ viewed from $\Sigma_{a}$.
+\end{itemize}
+
+
 
 \end{document}
-
