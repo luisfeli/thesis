@@ -2,5 +2,38 @@
 
 \begin{document}
 
+\section{ZMP and Ground Reaction Forces}
+To guarantee a walk is stable humanoid robots have to move making sure the sole
+of their feet is in contact with the ground all the time. However making contact
+is not enough additional constrains have to be met to actually
+
+The Zero Moment Point (ZMP) defined by Vukobratovi\'{c} and Stepanenko <reference>
+is one of the key concepts that help to understand the dynamics of walking.
+In addition to this concept it is also important to understand its interaction
+with the Support Polygon and the ground projection of the center of mass (CoM).
+
+Geometrically the Support Polygon is the region formed by enclosing all contact
+points between the robot's feet and the ground, as shown in figure <reference>.
+Mathematically the Support Polygon is defined as convex hull <reference>, which
+is the smallest set containing all the contact points.
+
+In the following sections a One of the most remarks
+The ZMP always exists inside of the support polygon <reference>.
+
+The ground projection of the center of mass is the point where the gravity line
+from the center of mass intersects the ground. The projection of the CoM may lie
+inside or outside the support polygon. This is shown in figure <reference>.
+
+When a person is standing on the ground, the ZMP coincides with the ground projection
+of the CoM. However the projection of the CoM of a person who is practicing a
+sport may lie outside the support polygon without compromising his stability but
+even in this case the ZMP is inside the support polygon, see figure <reference>.
+
+\subsection{ZMP Analysis}
+The free body diagram in figure <reference> shows the friction and reaction forces
+applied to the sole of the robot's feet by the ground, these forces are key for
+the ZMP analysis.
+
+
 
 \end{document}
